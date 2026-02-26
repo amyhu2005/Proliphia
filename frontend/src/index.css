@@ -207,11 +207,10 @@ body {
   margin-bottom: 2rem;
 }
 
-.logo-p {
-  font-family: var(--font-sans);
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--coral);
+.logo-img {
+  height: 4rem;
+  width: auto;
+  object-fit: contain;
 }
 
 .site-title {
@@ -372,11 +371,18 @@ textarea::placeholder {
 }
 
 .assistant .chat-avatar {
-  background-color: var(--coral);
+  background-color: var(--bg-color);
   color: white;
   font-family: var(--font-sans);
   font-weight: 300;
   font-size: 1.2rem;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .chat-content {

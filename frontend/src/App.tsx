@@ -124,7 +124,7 @@ function App() {
         {isHome ? (
           <main className="chat-area">
             <div className="branding-header">
-              <span className="logo-p" style={{ fontSize: '3rem', fontWeight: 200, lineHeight: 1 }}>P</span>
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Proliphia Logo" className="logo-img" />
               <h1 className="site-title">so, what are we thinking today</h1>
             </div>
 
@@ -157,15 +157,18 @@ function App() {
         ) : (
           <div className="active-chat-container">
             <div className="messages-list">
-              {messages.map((msg) => (
-                <div key={msg.id} className={`chat-message ${msg.role}`}>
-                  <div className="chat-avatar">{msg.role === 'user' ? 'A' : 'P'}</div>
-                  <div className="chat-content">{msg.content}</div>
+              {messages.map((msg) => <div key={msg.id} className={`chat-message ${msg.role}`}>
+                <div className="chat-avatar">
+                  {msg.role === 'user' ? 'A' : <img src={`${import.meta.env.BASE_URL}logo.png`} alt="P" className="avatar-img" />}
                 </div>
-              ))}
+                <div className="chat-content">{msg.content}</div>
+              </div>
+              )}
               {isTyping && (
                 <div className="chat-message assistant">
-                  <div className="chat-avatar" style={{ fontWeight: 200 }}>P</div>
+                  <div className="chat-avatar">
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="P" className="avatar-img" />
+                  </div>
                   <div className="chat-content typing">Thinking...</div>
                 </div>
               )}
