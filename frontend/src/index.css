@@ -11,6 +11,8 @@
   --coral: #D06B5F;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  /* added for sidebar */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: 'Newsreader', 'Times New Roman', Times, serif;
 }
@@ -41,33 +43,149 @@ body {
 
 .app-container {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  max-width: 800px;
   height: 100%;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 2rem;
   position: relative;
 }
 
-.top-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
+/* Sidebar Toggle Overlay / Button */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(45, 42, 38, 0.1);
+  backdrop-filter: blur(1px);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.plan-pill {
-  font-size: 0.8rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  background-color: #EFEDE7;
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-trigger-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  z-index: 30;
+  cursor: e-resize;
+}
+
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 30;
+  background: transparent;
+  border: none;
   color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.plan-pill span {
+.sidebar-toggle-btn:hover {
+  background: #E6E4DD;
+  color: var(--text-main);
+}
+
+/* Collapsible Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 280px;
+  background-color: #F3F1EB;
+  /* Match Claude's subtle sidebar bg usually */
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 50;
+  box-shadow: var(--shadow-lg);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-item:hover {
+  background-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.nav-item.active {
+  background-color: var(--panel-bg);
   color: var(--text-main);
   font-weight: 500;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Home Screen Layout */
@@ -191,19 +309,6 @@ textarea::placeholder {
 .send-btn:disabled {
   color: #D3D0C7;
   cursor: not-allowed;
-}
-
-.tool-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: #F8F7F3;
-  border-radius: 0.75rem;
-  font-size: 0.8rem;
-  color: #A3A09A;
-  border: 1px solid transparent;
-  /* matches claude's subtle connection bar */
 }
 
 /* Active Chat Layout */
