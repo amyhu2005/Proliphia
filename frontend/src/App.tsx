@@ -13,7 +13,7 @@ function App() {
     {
       id: '1',
       role: 'assistant',
-      content: 'Hello, welcome to Proliphia. I am your academic assistant, connected to your Obsidian vault. What shall we explore today?'
+      content: 'So, what are we thinking today?'
     }
   ]);
   const [input, setInput] = useState('');
