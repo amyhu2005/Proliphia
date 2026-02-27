@@ -139,6 +139,18 @@ body {
   margin-bottom: 2.5rem;
 }
 
+.sidebar-branding {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-logo-img {
+  height: 1.5rem;
+  width: auto;
+  object-fit: contain;
+}
+
 .close-btn {
   background: transparent;
   border: none;
@@ -371,7 +383,7 @@ textarea::placeholder {
 }
 
 .assistant .chat-avatar {
-  background-color: var(--bg-color);
+  background-color: transparent;
   color: white;
   font-family: var(--font-sans);
   font-weight: 300;
@@ -397,6 +409,7 @@ textarea::placeholder {
   color: var(--text-muted);
   font-style: italic;
 }
+
 
 .bottom-input-wrapper {
   padding: 1rem 0;
