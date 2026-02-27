@@ -100,7 +100,7 @@ function App() {
         <div className="sidebar-header">
           <div className="sidebar-branding">
             <img src={`${import.meta.env.BASE_URL}logo.png?v=3`} alt="P" className="sidebar-logo-img" />
-            <h2 className="title-font" style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontStyle: 'italic', fontWeight: 500 }}>Proliphia</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--text-main)', fontWeight: 400, letterSpacing: '-0.01em' }}>Proliphia</h2>
           </div>
           <button className="close-btn" onClick={() => setIsSidebarOpen(false)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
