@@ -99,7 +99,7 @@ function App() {
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-branding">
-            <img src={`${import.meta.env.BASE_URL}logo.png?v=2`} alt="P" className="sidebar-logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.png?v=3`} alt="P" className="sidebar-logo-img" />
             <h2 className="title-font" style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontStyle: 'italic', fontWeight: 500 }}>Proliphia</h2>
           </div>
           <button className="close-btn" onClick={() => setIsSidebarOpen(false)}>
@@ -127,7 +127,7 @@ function App() {
         {isHome ? (
           <main className="chat-area">
             <div className="branding-header">
-              <img src={`${import.meta.env.BASE_URL}logo.png?v=2`} alt="Proliphia Logo" className="logo-img" />
+              <img src={`${import.meta.env.BASE_URL}logo.png?v=3`} alt="Proliphia Logo" className="logo-img" />
               <h1 className="site-title">so, what are we thinking today</h1>
             </div>
 
@@ -162,7 +162,7 @@ function App() {
             <div className="messages-list">
               {messages.map((msg) => <div key={msg.id} className={`chat-message ${msg.role}`}>
                 <div className="chat-avatar">
-                  {msg.role === 'user' ? 'A' : <img src={`${import.meta.env.BASE_URL}logo.png?v=2`} alt="P" className="avatar-img" />}
+                  {msg.role === 'user' ? 'A' : <img src={`${import.meta.env.BASE_URL}logo.png?v=3`} alt="P" className="avatar-img" />}
                 </div>
                 <div className="chat-content">{msg.content}</div>
               </div>
@@ -170,7 +170,7 @@ function App() {
               {isTyping && (
                 <div className="chat-message assistant">
                   <div className="chat-avatar">
-                    <img src={`${import.meta.env.BASE_URL}logo.png?v=2`} alt="P" className="avatar-img" />
+                    <img src={`${import.meta.env.BASE_URL}logo.png?v=3`} alt="P" className="avatar-img" />
                   </div>
                   <div className="chat-content typing">Thinking...</div>
                 </div>
