@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Proliphia",
+  "version": "1.0.0",
+  "description": "AI assistant for your Obsidian vault.",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "logo.png"
+  },
+  "permissions": [],
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  }
+}

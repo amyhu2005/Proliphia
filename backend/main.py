@@ -29,7 +29,7 @@ class ChatResponse(BaseModel):
 
 class SetupRequest(BaseModel):
     vault_path: str
-    openai_api_key: str
+    gemini_api_key: str
 
 @app.get("/")
 def read_root():
@@ -38,13 +38,11 @@ def read_root():
 @app.post("/api/setup")
 def setup_vault(request: SetupRequest):
     """
-    Endpoint to receive the OpenAI API key and Obsidian vault path from the frontend.
-    It will initialize the RAG system and begin ingesting notes.
+    Endpoint to receive the Gemini API key and Obsidian vault path from the frontend.
     """
     try:
-        # In a real app, you shouldn't just set env vars like this globally
-        # for multiple users, but for a local personal assistant it's perfectly fine
-        os.environ["OPENAI_API_KEY"] = request.openai_api_key
+        os.environ["GEMINI_API_KEY"] = request.gemini_api_key
+        os.environ["GOOGLE_API_KEY"] = request.gemini_api_key
         
         # Initialize the vector DB
         success = rag.initialize_vault(request.vault_path)
@@ -60,15 +58,17 @@ def setup_vault(request: SetupRequest):
 @app.post("/api/chat", response_model=ChatResponse)
 def chat_endpoint(request: ChatRequest):
     """
-    Endpoint to process a user's chat message using the RAG system.
+    Endpoint to process a user's chat message using the Gemini API.
+    Currently returns a placeholder response.
     """
-    if "OPENAI_API_KEY" not in os.environ:
-         raise HTTPException(status_code=401, detail="OpenAI API key not set. Please setup the vault first.")
-         
+    if "GEMINI_API_KEY" not in os.environ and "GOOGLE_API_KEY" not in os.environ:
+        raise HTTPException(status_code=401, detail="Gemini API key not set. Please setup the vault first.")
+    
     try:
         answer, source_docs = rag.generate_answer(request.message)
         return ChatResponse(response=answer, sources=source_docs)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating answer: {str(e)}")
+
 
 # To run: uvicorn main:app --reload
